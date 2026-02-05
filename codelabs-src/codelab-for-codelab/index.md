@@ -1,20 +1,19 @@
-
-# Introduction to QNX Codelabs
-id: intro-qnx
-summary: Learn how to get started with QNX-based development
-categories: qnx, basics
+---
+id: codelab-for-codelab
+title: Codelabs to create Codelabs
+summary: Learn how to add new Codelabs
+categories: codelabs, setup
 tags: beginner
 difficulty: 1
 status: published
 authors: Your Team
-feedback link: https://github.com/your-org/your-repo/issues
-
+feedback_link: https://github.com/qnx/codelabs/issues
 ---
 
 ## Welcome
 Duration: 2
 
-This codelab introduces QNX concepts.
+This codelab provides how to contribute to codelabs
 
 ---
 
@@ -27,5 +26,4 @@ Install required tools.
 
 ## Next Steps
 Duration: 2
-
 
