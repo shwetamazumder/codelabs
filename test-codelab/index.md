@@ -5,4 +5,4 @@ id : test-codelab
 
 
 ## Step 1
-duration :2 
+duration : 3
