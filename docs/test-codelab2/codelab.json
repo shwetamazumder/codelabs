@@ -3,8 +3,8 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2026-02-06T12:43:38-05:00",
-  "id": "test-codelab",
+  "updated": "2026-02-06T12:47:53-05:00",
+  "id": "test-codelab2",
   "duration": 0,
   "title": "test codelab",
   "summary": "",
@@ -13,5 +13,5 @@
   "status": null,
   "category": null,
   "tags": [],
-  "url": "test-codelab"
+  "url": "test-codelab2"
 }
