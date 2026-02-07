@@ -8,7 +8,7 @@ difficulty: 1
 status: published
 authors: Your Team
 feedback_link: https://github.com/qnx/codelabs/issues
-next : https://qnx.github.io/codelabs/
+next : https://qnx.github.io/codelabs/docs
 
 # Codelabs to create Codelabs
 
