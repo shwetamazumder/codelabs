@@ -46,6 +46,44 @@
   <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
   <script src="//support.google.com/inapp/api.js"></script>
 
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+<script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+<script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+<script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+<script src="//support.google.com/inapp/api.js"></script>
+
+<!-- CLaaT Done button shadow-DOM override -->
+<script>
+(function () {
+  const TARGET = '/codelabs';
+
+  function patchDone() {
+    const codelab = document.querySelector('google-codelab');
+    if (!codelab || !codelab.shadowRoot) return false;
+
+    const done = codelab.shadowRoot.querySelector('a.codelab-done');
+    if (!done) return false;
+
+    done.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      window.location.href = TARGET;
+    }, true);
+
+    return true;
+  }
+
+  // CLaaT renders asynchronously — poll until ready
+  const interval = setInterval(() => {
+    if (patchDone()) clearInterval(interval);
+  }, 100);
+})();
+</script>
+
+</body>
+</html>
+
+
 
 </body>
 </html>
