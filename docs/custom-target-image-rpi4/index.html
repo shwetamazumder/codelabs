@@ -74,6 +74,31 @@
   <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
   <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
   <script src="//support.google.com/inapp/api.js"></script>
+  <!-- WORKING SHORT-TERM FIX: intercept Done click and X button -->
+  <script>
+    document.addEventListener('click', function (e) {
+      const path = e.composedPath?.() || [];
 
+      for (const el of path) {
+        if (!el) continue;
+
+        // Done button
+        if (el.id === 'done') {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          window.location.href = 'https://qnx.github.io/codelabs/';
+          break;
+        }
+
+        // X/close button (adjust selector if needed)
+        if (el.classList?.contains('codelab-close') || el.classList?.contains('codelab-close')) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          window.location.href = 'https://qnx.github.io/codelabs/';
+          break;
+        }
+      }
+    }, true); // capture phase is REQUIRED
+  </script>
 </body>
 </html>
