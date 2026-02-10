@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html>
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
@@ -46,12 +45,13 @@
   <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
   <script src="//support.google.com/inapp/api.js"></script>
 
+  <!-- Redirect script using MutationObserver -->
   <script>
   (function() {
+    const redirectUrl = "https://qnx.github.io/codelabs/";
 
     function getTotalSteps() {
-      const steps = document.querySelectorAll('google-codelab-step');
-      return steps.length;
+      return document.querySelectorAll('google-codelab-step').length;
     }
 
     function checkEnd() {
@@ -60,17 +60,25 @@
       const total = getTotalSteps();
 
       if (!isNaN(step) && step > total) {
-        window.location.href = "https://qnx.github.io/codelabs/";
+        window.location.href = redirectUrl;
       }
     }
 
-    window.addEventListener("hashchange", checkEnd);
-    window.addEventListener("load", checkEnd);
+    // Observe DOM for google-codelab-step elements
+    const observer = new MutationObserver((mutations, obs) => {
+      if (getTotalSteps() > 0) {
+        checkEnd();
+        obs.disconnect(); // stop observing once steps exist
+      }
+    });
 
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Also run on hash changes
+    window.addEventListener("hashchange", checkEnd);
+    // And in case steps already exist at load
+    window.addEventListener("load", checkEnd);
   })();
   </script>
-
-
-
 </body>
 </html>
