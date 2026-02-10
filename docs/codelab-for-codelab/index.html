@@ -62,7 +62,7 @@
         }
 
         // X/close button (adjust selector if needed)
-        if (el.classList?.contains('codelab-close')) {
+        if (el.classList?.contains('codelab-close') || el.classList?.contains('codelab-close')) {
           e.preventDefault();
           e.stopImmediatePropagation();
           window.location.href = 'https://qnx.github.io/codelabs/';
