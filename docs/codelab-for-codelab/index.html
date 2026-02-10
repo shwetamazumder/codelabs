@@ -45,19 +45,23 @@
   <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
   <script src="//support.google.com/inapp/api.js"></script>
 
-  <!-- SHORT-TERM WORKAROUND: override Done button handler -->
+  <!-- WORKING SHORT-TERM FIX: intercept Done click -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const lab = document.querySelector('google-codelab');
-      if (!lab) return;
+    document.addEventListener('click', function (e) {
+      const path = e.composedPath && e.composedPath();
+      if (!path) return;
 
-      lab._goToHome = function () {
-        // Always return to project root
-        window.location.href = 'https://qnx.github.io/codelabs/';
-        // or explicitly:
-        // window.location.href = 'https://qnx.github.io/codelabs/';
-      };
-    });
+      for (const el of path) {
+        if (el && el.id === 'done') {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+
+          // Redirect to project root instead of org root
+          window.location.href = 'https://qnx.github.io/codelabs/';
+          break;
+        }
+      }
+    }, true); // capture phase is REQUIRED
   </script>
 
 </body>
