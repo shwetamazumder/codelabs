@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2026-02-05T21:31:32-05:00",
+  "updated": "2026-02-10T16:42:30-05:00",
   "id": "custom-target-image-rpi4",
   "duration": 12,
-  "title": "Build your own QNX 8.0 Custom Target Image (CTI) for Raspberry Pi 4 on",
+  "title": "Build your own QNX 8.0 Custom Target Image (CTI) for Raspberry Pi 4",
   "authors": "QNX",
   "summary": "",
-  "source": "./codelabs-src/custom-target-image-rpi4/index.md",
+  "source": "./markdown/custom-target-image-rpi4/index.md",
   "theme": "",
   "status": [
     "published"
