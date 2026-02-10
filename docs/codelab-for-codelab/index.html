@@ -45,40 +45,36 @@
   <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
   <script src="//support.google.com/inapp/api.js"></script>
 
-  <!-- Redirect script using MutationObserver -->
+  <!-- override Done button behavior -->
   <script>
-  (function() {
-    const redirectUrl = "https://qnx.github.io/codelabs/";
+    customElements.whenDefined('google-codelab').then(() => {
+      const lab = document.querySelector('google-codelab');
+      if (!lab) return;
 
-    function getTotalSteps() {
-      return document.querySelectorAll('google-codelab-step').length;
-    }
+      lab._goToHome = function () {
+        var index;
+        var parts = location.search.substring(1).split('&');
+        for (var i = 0; i < parts.length; i++) {
+          var param = parts[i].split('=');
+          if (param[0] === 'index') {
+            index = param[1];
+            break;
+          }
+        }
 
-    function checkEnd() {
-      const hash = window.location.hash.replace('#', '');
-      const step = parseInt(hash, 10);
-      const total = getTotalSteps();
+        index = index ? decodeURIComponent(index) : '';
+        index = index.replace(/[^a-z0-9\-]+/ig, '');
+        if (index === 'index') {
+          index = '';
+        }
 
-      if (!isNaN(step) && step > total) {
-        window.location.href = redirectUrl;
-      }
-    }
-
-    // Observe DOM for google-codelab-step elements
-    const observer = new MutationObserver((mutations, obs) => {
-      if (getTotalSteps() > 0) {
-        checkEnd();
-        obs.disconnect(); // stop observing once steps exist
-      }
+        // Redirect to project root instead of org root
+        window.location.href = './' + index;
+        // or explicitly:
+        // window.location.href = 'https://qnx.github.io/codelabs/';
+      };
     });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // Also run on hash changes
-    window.addEventListener("hashchange", checkEnd);
-    // And in case steps already exist at load
-    window.addEventListener("load", checkEnd);
-  })();
   </script>
+
 </body>
 </html>
