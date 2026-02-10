@@ -45,31 +45,15 @@
   <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
   <script src="//support.google.com/inapp/api.js"></script>
 
-  <!-- override Done button behavior -->
+  <!-- SHORT-TERM WORKAROUND: override Done button handler -->
   <script>
-    customElements.whenDefined('google-codelab').then(() => {
+    document.addEventListener("DOMContentLoaded", function () {
       const lab = document.querySelector('google-codelab');
       if (!lab) return;
 
       lab._goToHome = function () {
-        var index;
-        var parts = location.search.substring(1).split('&');
-        for (var i = 0; i < parts.length; i++) {
-          var param = parts[i].split('=');
-          if (param[0] === 'index') {
-            index = param[1];
-            break;
-          }
-        }
-
-        index = index ? decodeURIComponent(index) : '';
-        index = index.replace(/[^a-z0-9\-]+/ig, '');
-        if (index === 'index') {
-          index = '';
-        }
-
-        // Redirect to project root instead of org root
-        window.location.href = './' + index;
+        // Always return to project root
+        window.location.href = './';
         // or explicitly:
         // window.location.href = 'https://qnx.github.io/codelabs/';
       };
