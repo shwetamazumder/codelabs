@@ -22,7 +22,7 @@ fs.readdirSync(codelabsDir, { withFileTypes: true }).forEach(dir => {
       codelabs.push({
         title: data.title,
         duration: data.duration + " min",
-        href: `/${dir.name}/index.html`, // absolute path from web root
+        href: `/codelabs/${dir.name}/index.html`, // absolute path from web root
         id: data.id,
         authors: data.authors,
         updated: data.updated,

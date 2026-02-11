@@ -2,7 +2,7 @@ window.CODELABS = [
   {
     "title": "Codelabs to create Codelabs",
     "duration": "9 min",
-    "href": "/codelab-for-codelab/index.html",
+    "href": "/codelabs/codelab-for-codelab/index.html",
     "id": "codelab-for-codelab",
     "authors": "Your Team",
     "updated": "2026-02-10T16:42:30-05:00",
@@ -17,7 +17,7 @@ window.CODELABS = [
   {
     "title": "Build your own QNX 8.0 Custom Target Image (CTI) for Raspberry Pi 4",
     "duration": "12 min",
-    "href": "/custom-target-image-rpi4/index.html",
+    "href": "/codelabs/custom-target-image-rpi4/index.html",
     "id": "custom-target-image-rpi4",
     "authors": "QNX",
     "updated": "2026-02-10T16:42:30-05:00",
