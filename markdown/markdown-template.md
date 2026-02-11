@@ -1,6 +1,6 @@
 
-id: codelab-for-codelab
-title: Codelabs to create Codelabs
+id: markdown-template
+title: template to create codelabs
 summary: Learn how to add new Codelabs
 categories: codelabs, setup
 tags: beginner
