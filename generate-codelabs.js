@@ -1,46 +1,39 @@
-// generate-codelabs.js
-// This script scans all CLAAT codelab.json files under docs/
-// and generates docs/codelabs-list.js for use on the landing page
-
 const fs = require('fs');
 const path = require('path');
 
-const docsDir = path.join(__dirname, 'docs');                  // CLAAT output folder
-const outputFile = path.join(docsDir, 'codelabs-list.js');    // Output JS
+// Root where this script lives
+const rootDir = __dirname;
 
-// Read all folders inside docs/
-const folders = fs.readdirSync(docsDir);
+// Codelabs live inside docs/
+const codelabsDir = path.join(rootDir, 'docs');
 
-const codelabs = folders
-  .map(folder => {
-    const codelabJsonPath = path.join(docsDir, folder, 'codelab.json');
+// Output file inside docs/
+const outputFile = path.join(codelabsDir, 'codelabs-list.js');
 
-    // Skip folders without codelab.json
-    if (!fs.existsSync(codelabJsonPath)) return null;
+const codelabs = [];
 
-    const data = JSON.parse(fs.readFileSync(codelabJsonPath, 'utf8'));
+// Loop through all folders inside docs/
+fs.readdirSync(codelabsDir, { withFileTypes: true }).forEach(dir => {
+  if (dir.isDirectory()) {
+    const jsonPath = path.join(codelabsDir, dir.name, 'codelab.json');
+    if (fs.existsSync(jsonPath)) {
+      const data = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
 
-    // Return only the fields needed for landing page
-    return {
-      title: data.title,
-      //duration: data.duration ? `${data.duration} min` : "",
-      href: `docs/${folder}/index.html`,
-      //id: data.id,
-      //authors: data.authors || "",
-      //updated: data.updated,
-      category: data.category || [],
-      tags: data.tags || []
-    };
-  })
-  .filter(Boolean)
-  .sort((a, b) => new Date(b.updated) - new Date(a.updated)); // Sort newest first
+      codelabs.push({
+        title: data.title,
+        duration: data.duration + " min",
+        href: `/${dir.name}/index.html`, // absolute path from web root
+        id: data.id,
+        authors: data.authors,
+        updated: data.updated,
+        category: data.category,
+        tags: data.tags
+      });
+    }
+  }
+});
 
-// Generate JS file content
-const outputContent = `
-// AUTO-GENERATED FILE - DO NOT EDIT
-window.CODELABS = ${JSON.stringify(codelabs, null, 2)};
-`;
+// Write JS file into docs/
+fs.writeFileSync(outputFile, `window.CODELABS = ${JSON.stringify(codelabs, null, 2)};`);
 
-fs.writeFileSync(outputFile, outputContent);
-
-console.log(`✅ Generated docs/codelabs-list.js with ${codelabs.length} codelabs.`);
+console.log("✅ codelabs-list.js generated in docs/");
