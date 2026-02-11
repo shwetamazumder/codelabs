@@ -24,10 +24,9 @@
       display: none !important;
     }
 
-    /* Hide the X / close / back button in the header */
-    google-codelab #back,
-    google-codelab .codelab-close-button,
-    google-codelab .codelab-header a {
+   /* Hide the close “X” button */
+    google-codelab #menu + a i.material-icons:where(:contains("close")),
+    google-codelab i.material-icons {
       display: none !important;
     }
   </style>
