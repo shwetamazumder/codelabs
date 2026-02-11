@@ -172,82 +172,62 @@
 
       <!-- Cards grid -->
       <div class="cards" id="cards">
-        <a class="card" href="codelab-for-codelab/index.html">
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="badge">1</span>
-              <span class="duration">⏱ 15 min</span>
-            </div>
-            <h3>Codelab for creating Codelab</h3>
-            <p>Get started with the basics of creating a codelab</p>
-          </div>
-          <div class="arrow">→</div>
-        </a>
-
-        <a class="card" href="custom-target-image-rpi4/index.html">
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="badge">2</span>
-              <span class="duration">⏱ 20 min</span>
-            </div>
-            <h3>Build your own QNX 8.0 Custom Target Image (CTI) for Raspberry Pi 4</h3>
-            <p>Build your own QNX 8.0 Custom Target Image (CTI) for Raspberry Pi 4</p>
-          </div>
-          <div class="arrow">→</div>
-        </a>
-
-        <!-- Add more cards as examples -->
-        <a class="card" href="#">
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="badge">3</span>
-              <span class="duration">⏱ 25 min</span>
-            </div>
-            <h3>QNX Networking Basics</h3>
-            <p>Learn how to set up networking on QNX systems</p>
-          </div>
-          <div class="arrow">→</div>
-        </a>
-
-        <a class="card" href="#">
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="badge">4</span>
-              <span class="duration">⏱ 30 min</span>
-            </div>
-            <h3>QNX File System Overview</h3>
-            <p>Understand file management and storage in QNX</p>
-          </div>
-          <div class="arrow">→</div>
-        </a>
+        <!-- Cards will be dynamically injected here -->
       </div>
 
-      <p class="count" id="count">4 codelabs available</p>
+      <p class="count" id="count"></p>
     </div>
   </main>
 
+  <!-- Include the generated JS file -->
+  <script src="docs/codelabs-list.js"></script>
+
   <script>
+    const cardsContainer = document.getElementById('cards');
     const searchInput = document.getElementById('search');
-    const cards = document.querySelectorAll('.card');
-    const count = document.getElementById('count');
+    const countEl = document.getElementById('count');
 
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.toLowerCase();
-      let visibleCount = 0;
+    // Function to render cards
+    function renderCards(codelabs) {
+      cardsContainer.innerHTML = '';
+      codelabs.forEach((lab, index) => {
+        const card = document.createElement('a');
+        card.className = 'card';
+        card.href = lab.href;
 
-      cards.forEach(card => {
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        const description = card.querySelector('p').textContent.toLowerCase();
+        card.innerHTML = `
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="badge">${index + 1}</span>
+              <span class="duration">⏱ ${lab.duration}</span>
+            </div>
+            <h3>${lab.title}</h3>
+            <p>${lab.category.join(', ')}</p>
+          </div>
+          <div class="arrow">→</div>
+        `;
 
-        if (title.includes(query) || description.includes(query)) {
-          card.style.display = 'flex';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
+        cardsContainer.appendChild(card);
       });
 
-      count.textContent = `${visibleCount} codelabs available`;
+      countEl.textContent = `${codelabs.length} codelabs available`;
+    }
+
+    // Initial render
+    renderCards(window.CODELABS);
+
+    // Search functionality
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const filtered = window.CODELABS.filter(lab => {
+        return (
+          lab.title.toLowerCase().includes(query) ||
+          lab.category.join(' ').toLowerCase().includes(query) ||
+          lab.tags.join(' ').toLowerCase().includes(query)
+        );
+      });
+
+      renderCards(filtered);
     });
   </script>
 </body>
