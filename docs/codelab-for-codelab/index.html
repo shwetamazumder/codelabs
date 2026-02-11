@@ -1,4 +1,6 @@
+
 <!doctype html>
+
 <html>
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
@@ -18,23 +20,29 @@
   </style>
 </head>
 <body>
-  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
   <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
                   id="codelab-for-codelab"
                   title="Codelabs to create Codelabs"
                   environment="web"
-                  next="/codelabs"
                   feedback-link="https://github.com/qnx/codelabs/issues">
     
       <google-codelab-step label="Welcome" duration="2">
         <p>This codelab provides how to contribute to codelabs</p>
+
+
       </google-codelab-step>
     
       <google-codelab-step label="Setup Environment" duration="5">
         <p>Install required tools.</p>
+
+
       </google-codelab-step>
     
       <google-codelab-step label="Next Steps" duration="2">
+        
+
       </google-codelab-step>
     
   </google-codelab>
@@ -44,33 +52,6 @@
   <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
   <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
   <script src="//support.google.com/inapp/api.js"></script>
-
-  <!-- WORKING SHORT-TERM FIX: intercept Done click and X button -->
-  <script>
-    document.addEventListener('click', function (e) {
-      const path = e.composedPath?.() || [];
-
-      for (const el of path) {
-        if (!el) continue;
-
-        // Done button
-        if (el.id === 'done') {
-          e.preventDefault();
-          e.stopImmediatePropagation();
-          window.location.href = 'https://qnx.github.io/codelabs/';
-          break;
-        }
-
-        // X/close button (adjust selector if needed)
-        if (el.classList?.contains('codelab-close') || el.classList?.contains('codelab-close')) {
-          e.preventDefault();
-          e.stopImmediatePropagation();
-          window.location.href = 'https://qnx.github.io/codelabs/';
-          break;
-        }
-      }
-    }, true); // capture phase is REQUIRED
-  </script>
 
 </body>
 </html>
