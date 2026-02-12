@@ -1,0 +1,137 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>How to Create Your Own Codelab and Contribute to QNX</title>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+
+  
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+
+     
+    google-codelab #done {
+      display: none !important;
+    }
+
+     
+    google-codelab #arrow-back {
+      display: none !important;
+    }
+  </style>
+
+</head>
+<body>
+
+  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
+
+  <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
+                  id="codelab-to-create-codelab"
+                  title="How to Create Your Own Codelab and Contribute to QNX"
+                  environment="web"
+                  feedback-link="https://github.com/qnx/codelabs/issues">
+    
+      <google-codelab-step label="Welcome" duration="2">
+        <p>This codelab will show you <strong>how to create your own Codelab</strong> and contribute to QNX.<br> We use the open-source <strong>Google Codelabs Tools</strong> to author codelabs.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Workflow" duration="3">
+        <p>High-level workflow for creating a codelab:</p>
+<ol type="1">
+<li><strong>Setup your system</strong> – Install IDE/editor, Go, and any necessary tools.</li>
+<li><strong>Write your codelab</strong> – Draft content in markdown, include code snippets, videos, and instructions.</li>
+<li><strong>Build/preview locally</strong> (optional) – Use Claat to generate HTML and verify formatting.</li>
+<li><strong>Contribute your codelab</strong> – Push your changes to a branch on GitHub and create a pull request.</li>
+</ol>
+<p><strong>Flow Diagram<br></strong><em>(Add a visual workflow diagram here if available)</em></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Setup Environment" duration="5">
+        <h2 is-upgraded>Pre-requisites</h2>
+<ol type="1">
+<li><strong>Download an IDE or Editor</strong> – VS Code is recommended.</li>
+<li><strong>Learn GitHub Basics: </strong><a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Learn GitHub</a></li>
+<li><strong>Install Go</strong> (needed if using Claat) <pre><code language="language-bash" class="language-bash">export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+</code></pre>
+</li>
+<li><strong>Build or install Claat</strong> to view your markdown file locally as a static HTML (optional).</li>
+</ol>
+<h2 is-upgraded>Build Claat from Source</h2>
+<ol type="1">
+<li>Clone the customized QNX Claat repo: <pre><code language="language-bash" class="language-bash">git clone https://github.com/qnx/tools.git
+</code></pre>
+</li>
+<li>Navigate to the Claat folder: <pre><code language="language-bash" class="language-bash">cd tools/claat
+</code></pre>
+</li>
+<li>Build Claat: <pre><code language="language-bash" class="language-bash">go install
+</code></pre>
+</li>
+</ol>
+<p>Running <code>go install</code> compiles Claat and places the executable in <code>$GOPATH/bin</code>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Guidelines for Creating Codelabs" duration="4">
+        <ul>
+<li>Focus on <strong>one specific goal</strong> per codelab.</li>
+<li>Add an <strong>Introduction</strong> describing the codelab purpose and outcome.</li>
+<li>Include a <strong>System Setup</strong> section for pre-requisites.</li>
+<li>Use <strong>code snippets</strong> and <strong>videos</strong> where necessary.</li>
+<li>Break content into <strong>small, independent sections</strong>.</li>
+<li>Always create a <strong>GitHub branch</strong> for your contributions.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Setup GitHub" duration="3">
+        <ol type="1">
+<li>Clone the QNX codelabs repo: <pre><code language="language-bash" class="language-bash">git clone https://github.com/qnx/codelabs.git
+</code></pre>
+</li>
+<li>If using SSH: <pre><code language="language-bash" class="language-bash">git clone git@github.com:qnx/codelabs.git
+</code></pre>
+</li>
+<li>Work on a <strong>new branch</strong> when creating or editing codelabs.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Next Steps" duration="2">
+        <p>You are now ready to start creating your own codelabs.<br> Follow the guidelines above and submit your codelab as a GitHub pull request.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
